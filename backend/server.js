@@ -12,7 +12,7 @@ const usersRouter = require('./routes/users');
 const app = express();
 const server = http.createServer(app);
 
-const clientOrigin = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
+const clientOrigin = 'https://12-rzuy.onrender.com';
 
 const io = new Server(server, {
 	cors: {
