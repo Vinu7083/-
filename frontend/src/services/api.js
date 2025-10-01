@@ -2,7 +2,9 @@ import axios from 'axios'
 
 export const SOCKET_BASE_URL = window.location.origin
 
-const api = axios.create({ baseURL: `/api` })
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+})
 
 // Token storage helpers
 const TOKEN_KEY = 'chatapp_token'
@@ -71,4 +73,4 @@ export async function getUserStatus(username) {
 export async function clearConversation(sender, receiver) {
 	const res = await api.delete('/messages', { params: { sender, receiver } })
 	return res.data
-} 
+}
