@@ -14,14 +14,17 @@ export default function App() {
 	const [isPolling, setIsPolling] = useState(false)
 	const [peerStatus, setPeerStatus] = useState({ online: false, lastLogoutAt: null })
 
-	const socket = useMemo(() => io(SOCKET_BASE_URL, {
-		transports: ['websocket', 'polling'],
-		reconnection: true,
-		reconnectionAttempts: Infinity,
-		reconnectionDelay: 1000,
-		reconnectionDelayMax: 5000,
-		timeout: 20000,
-	}), [])
+	const socket = useMemo(
+		() => io(import.meta.env.VITE_API_URL, {
+			transports: ['websocket', 'polling'],
+			reconnection: true,
+			reconnectionAttempts: Infinity,
+			reconnectionDelay: 1000,
+			reconnectionDelayMax: 5000,
+			timeout: 20000,
+		}),
+		[]
+	)
 
 	useEffect(() => {
 		socket.on('connect', () => setConnected(true))
@@ -165,4 +168,4 @@ export default function App() {
 			<MessageInput onSend={handleSend} disabled={!me || !peer} />
 		</div>
 	)
-} 
+}

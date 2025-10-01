@@ -41,36 +41,36 @@ api.interceptors.request.use((config) => {
 })
 
 export async function fetchMessages(sender, receiver) {
-	const res = await api.get('/messages', { params: { sender, receiver } })
-	return res.data
+    const res = await api.get('/api/messages', { params: { sender, receiver } })
+    return res.data
 }
 
 export async function postMessage(payload) {
-	const res = await api.post('/messages', payload)
-	return res.data
+    const res = await api.post('/api/messages', payload)
+    return res.data
 }
 
 export async function register(username, password, passkey) {
-	const res = await api.post('/auth/register', { username, password, passkey })
-	return res.data
+    const res = await api.post('/api/auth/register', { username, password, passkey })
+    return res.data
 }
 
 export async function login(username, password) {
-	const res = await api.post('/auth/login', { username, password })
-	return res.data
+    const res = await api.post('/api/auth/login', { username, password })
+    return res.data
 }
 
 export async function logout() {
-	const res = await api.post('/auth/logout')
-	return res.data
+    const res = await api.post('/api/auth/logout')
+    return res.data
 }
 
 export async function getUserStatus(username) {
-	const res = await api.get(`/users/${encodeURIComponent(username)}/status`)
-	return res.data
+    const res = await api.get(`/api/users/${encodeURIComponent(username)}/status`)
+    return res.data
 }
 
 export async function clearConversation(sender, receiver) {
-	const res = await api.delete('/messages', { params: { sender, receiver } })
-	return res.data
+    const res = await api.delete('/api/messages', { params: { sender, receiver } })
+    return res.data
 }
